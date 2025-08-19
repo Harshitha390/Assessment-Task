@@ -1,7 +1,7 @@
 <template>
     <section class="why-choose">
   <!-- Left red content box -->
-  <div class="left-box">
+  <div class="left-box fade-up" data-delay="100">
     <h2>Why Choose<br />Yummy</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -13,7 +13,7 @@
   </div>
 
   <!-- Feature cards -->
-  <div class="feature-card">
+  <div class="feature-card  fade-up" data-delay="200">
     <div class="icon-circle">
       <i class="fas fa-clipboard-list"></i>
     </div>
@@ -21,7 +21,7 @@
     <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
   </div>
 
-  <div class="feature-card">
+  <div class="feature-card fade-up" data-delay="300">
     <div class="icon-circle">
       <i class="fa-regular fa-gem"></i>
     </div>
@@ -29,7 +29,7 @@
     <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
   </div>
 
-  <div class="feature-card">
+  <div class="feature-card fade-up" data-delay="400">
     <div class="icon-circle">
       <i class="fa-solid fa-inbox"></i>
     </div>
@@ -39,6 +39,27 @@
 </section>
 
 </template>
+
+<script setup>
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  const elements = document.querySelectorAll('.fade-up');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => {
+          entry.target.classList.add('show');
+        }, delay);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+});
+</script>
 
 <style>
 .why-choose {
@@ -108,16 +129,16 @@
   width: 100%;
   max-width: 240px;
   box-sizing: border-box;
-    border: 1px solid color-mix(in srgb, #212529, transparent 90%);
+  border: 1px solid color-mix(in srgb, #212529, transparent 90%);
     
 }
 
 .icon-circle {
- background-color: color-mix(in srgb, #ce1212, transparent 95%);
- height: 72px;
- width: 72px;
- border-radius: 50%;
- display: inline-flex;
+  background-color: color-mix(in srgb, #ce1212, transparent 95%);
+  height: 72px;
+  width: 72px;
+  border-radius: 50%;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   margin: 0 auto 1rem;
@@ -127,13 +148,8 @@
   margin-top: 40px;
 }
 
-/* .icon-circle i {
-  color: #CE1212; 
-  font-size: 32px; /* text-2xl */
-
-
- .why-choose .feature-card:hover i {
-  background-color :#CE1212;
+ .feature-card:hover .icon-circle {
+  background-color :#ce1212;
   color: white;
 } 
 
@@ -144,7 +160,7 @@
   line-height: normal;
   font-size: 20px;
   color: #37373f;
-    font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 } 
 
 .feature-card p {
@@ -153,4 +169,56 @@
     margin-top: 20px;
     color: color-mix(in srgb, #212529, transparent 30%);
 }
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Responsive adjustments to reduce space between cards */
+@media (max-width: 768px) {
+  .why-choose {
+    gap: 0.5rem; /* reduce gap between flex items */
+    padding: 1rem; /* optional: reduce padding */
+  }
+
+  .left-box,
+  .feature-card {
+    margin-left: 0; /* remove left margin */
+    margin-top: 20px; /* reduce top margin */
+    margin-bottom: 30px; /* reduce bottom margin */
+  }
+
+  .icon-circle {
+    margin-top: 20px; /* reduce icon top margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose {
+    gap: 0.3rem;
+    padding: 0.5rem;
+  }
+}
+/* Mobile view: match card width to red box */
+@media (max-width: 768px) {
+  .left-box,
+  .feature-card {
+    max-width: 350px; /* same as red box */
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-box,
+  .feature-card {
+    max-width: 100%; /* take full screen on very small devices */
+  }
+}
+
 </style>

@@ -23,23 +23,23 @@
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, <br />sed do
                     eiusmod tempor incididunt ut labore et dolore <br />magna aliqua.
                 </p>
+<ul class="features">
+    <li>
+        <i class="fa-solid fa-circle-check" style="color: #c11212; font-size: 20px;"></i>
+        Ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </li>
+    <li>
+        <i class="fa-solid fa-circle-check" style="color: #c11212; font-size: 20px;"></i>
+        Duis aute irure dolor in reprehenderit in voluptate <br />
+        velit.
+    </li>
+    <li>
+        <i class="fa-solid fa-circle-check" style="color: #c11212; font-size: 20px;"></i>
+        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.
+    </li>
+</ul>
 
-                <ul class="features">
-                    <li>
-                        <i class="fa-solid fa-circle-check" style="color: #c11212"></i>
-                        Ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat.
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check" style="color: #c11212"></i> Duis
-                        aute irure dolor in reprehenderit in voluptate <br />
-                        velit.
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-circle-check" style="color: #c11212"></i>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.
-                    </li>
-                </ul>
+
 
                 <p class="para">
                     Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
@@ -179,7 +179,7 @@ small {
 }
 
 .para{
-    padding-right: 300px;
+    padding-right: 280px;
 }
 
 .intro {
@@ -206,12 +206,12 @@ small {
 .features li {
     margin: 0.5rem 0;
     font-size: 1rem;
-    /* position: absolute;
-        font-size: 20px;
-        left: 0px;
-        top: -3px;
-        color: #CE1212;
-        font-style: italic; */
+        display: flex;
+  align-items: flex-start;
+}
+.features li i {
+  margin-right: 8px;
+  flex-shrink: 0; /* prevent icon from pushing text */
 }
 
 .check {
@@ -226,7 +226,7 @@ small {
 .video-thumb {
     position: relative;
     display: inline-block;
-    max-width: 350px;
+    max-width: 400px;
     overflow: hidden;
 }
 
@@ -261,7 +261,7 @@ small {
 .play-btn:active {
   transform: translate(-50%, -50%) scale(1.4);
 }
-
+/* 
 @keyframes pulse {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -274,12 +274,111 @@ small {
   100% {
     transform: translate(-50%, -50%) scale(1);
   }
-}
+} */
 
 .contact-box {
     border: 2px solid #444;
     margin-top: 2rem;
     padding: 1rem 2rem;
     text-align: center;
+}
+/* Responsive Fixes */
+@media (max-width: 1024px) {
+  .about-content {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .para {
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 0 15px;
+    text-align: center;
+  }
+
+  .about-image, 
+  .about-text {
+    flex: 1 1 100%;
+    padding-left: 0;
+    padding-top: 20px;
+    max-width: 100%;
+  }
+
+  .about-text {
+    text-align: left; 
+  }
+  .para {
+    padding-right: 0;
+  }
+
+  .video-thumb {
+    max-width: 100%;
+  }
+
+  .features {
+    max-width: 100%;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading h2 {
+    font-size: 32px;
+  }
+
+  .contact-box .phone {
+    font-size: 22px;
+  }
+
+  .play-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 18px;
+  }
+}
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.heading,
+.about-image,
+.contact-box,
+.about-text,
+.features li,
+.video-section
+{
+  opacity: 0;
+  animation-name: fadeUp;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-delay: 0.1s;
+}
+
+/* Stagger the list items inside features for a nicer effect */
+.features li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.features li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.features li:nth-child(3) {
+  animation-delay: 0.3s;
 }
 </style>

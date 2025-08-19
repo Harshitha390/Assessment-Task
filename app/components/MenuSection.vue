@@ -255,4 +255,61 @@ const filteredItems = computed(() =>
   opacity: 0;
   transform: scale(0.95);
 }
-</style>
+/* Responsive styles */
+
+/* For tablets */
+@media (max-width: 992px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .menu-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .tab-heading {
+    font-size: 36px;
+  }
+
+  .menu-title {
+    font-size: 36px;
+  }
+}
+
+/* For mobile */
+@media (max-width: 576px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .menu-img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .menu-subtitle {
+    font-size: 11px;
+  }
+
+  .menu-title {
+    font-size: 28px;
+  }
+
+  .tab-heading {
+    font-size: 28px;
+  }
+
+  .menu-tabs {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tab-button {
+    font-size: 16px;
+  }
+}
+
+</style> 

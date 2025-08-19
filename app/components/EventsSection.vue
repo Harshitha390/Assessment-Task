@@ -132,7 +132,7 @@ const slides = [
 }
 
 ::v-deep .swiper-pagination-bullet {
-  background-color: #e2e3e5;
+  background-color: #ccc;
   opacity: 0.7;
  width: 12px;
  height: 12px;
@@ -155,4 +155,77 @@ const slides = [
   text-align: center;
   width: 100%;
 }
+/* Extra responsiveness */
+@media (max-width: 1024px) {
+  .slide {
+    height: 500px;
+    padding: 30px;
+  }
+  .content h2 {
+    font-size: 22px;
+  }
+  .content h3 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    height: 450px;
+    padding: 25px;
+  }
+  .content {
+    max-width: 90%;
+    margin-bottom: 20px;
+  }
+  .content h2 {
+    font-size: 20px;
+  }
+  .content h3 {
+    font-size: 24px;
+  }
+  .content p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    height: 400px;
+    padding: 20px;
+  }
+  .content {
+    max-width: 100%;
+    margin-bottom: 15px;
+  }
+  .content h2 {
+    font-size: 18px;
+  }
+  .content h3 {
+    font-size: 20px;
+  }
+  .content p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.swiper-slide-active .content {
+  opacity: 0; /* start hidden */
+  animation-name: fadeUp;
+  animation-duration: 0.6s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0.2s;
+}
+
 </style>

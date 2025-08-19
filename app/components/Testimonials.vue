@@ -1,56 +1,10 @@
-<template>
-  <section class="testimonial-section">
-    <p class="subtitle">Testimonials</p>
-    <h2 class="title">What Are They <span>Saying About Us</span></h2>
-
-    <!-- Slide Transition -->
-    <transition name="slide-fade" mode="out-in">
-      <div class="carousel-wrapper" :key="testimonials[currentIndex].id">
-        <div class="carousel-content">
-          <div class="testimonial-card">
-            <!-- Text -->
-            <div class="testimonial-text">
-              <p class="quote">
-                <i class="fa-solid fa-quote-left"></i>
-                {{ testimonials[currentIndex].quote }}
-                <i class="fa-solid fa-quote-right"></i>
-              </p>
-              <h4 class="name">{{ testimonials[currentIndex].name }}</h4>
-              <small class="role">{{ testimonials[currentIndex].role }}</small>
-              <div class="stars">
-                <span v-for="n in 5" :key="n">
-                  <i class="fa-solid fa-star"></i>
-                </span>
-              </div>
-            </div>
-
-            <!-- Image -->
-            <div class="testimonial-image">
-              <img :src="testimonials[currentIndex].image" alt="Author Image" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </transition>
-
-    <!-- Dots -->
-    <div class="dots">
-      <span
-        v-for="(t, i) in testimonials"
-        :key="i"
-        :class="['dot', { active: i === currentIndex }]"
-        @click="goTo(i)"
-      ></span>
-    </div>
-  </section>
-</template>
-
 <script>
 export default {
   name: "TestimonialsCarousel",
   data() {
     return {
       currentIndex: 0,
+      direction: 'next',
       testimonials: [
         {
           id: 1,
@@ -102,6 +56,53 @@ export default {
   },
 };
 </script>
+
+<template>
+  <section class="testimonial-section">
+    <p class="subtitle">Testimonials</p>
+    <h2 class="title">What Are They <span>Saying About Us</span></h2>
+
+    <!-- Slide Transition -->
+    <transition name="slide-fade" mode="out-in">
+      <div class="carousel-wrapper" :key="testimonials[currentIndex].id">
+        <div class="carousel-content">
+          <div class="testimonial-card">
+            <!-- Text -->
+            <div class="testimonial-text">
+              <p class="quote">
+                <i class="fa-solid fa-quote-left"></i>
+                {{ testimonials[currentIndex].quote }}
+                <i class="fa-solid fa-quote-right"></i>
+              </p>
+              <h4 class="name">{{ testimonials[currentIndex].name }}</h4>
+              <small class="role">{{ testimonials[currentIndex].role }}</small>
+              <div class="stars">
+                <span v-for="n in 5" :key="n">
+                  <i class="fa-solid fa-star"></i>
+                </span>
+              </div>
+            </div>
+
+            <!-- Image -->
+            <div class="testimonial-image">
+              <img :src="testimonials[currentIndex].image" alt="Author Image" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <!-- Dots -->
+    <div class="dots">
+      <span
+        v-for="(t, i) in testimonials"
+        :key="i"
+        :class="['dot', { active: i === currentIndex }]"
+        @click="goTo(i)"
+      ></span>
+    </div>
+  </section>
+</template>
 
 <style scoped>
 /* Section layout */

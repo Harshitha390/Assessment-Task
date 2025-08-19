@@ -48,7 +48,7 @@
         <div class="icon"><i class="fa-sharp fa-solid fa-clock" ></i></div>
         <div>
           <h3>Opening Hours</h3>
-          <p><strong>Mon-Sat:</strong> 11AM - 23PM<br /><strong>Sunday:</strong> Closed</p>
+          <p><strong>Mon-Sat:</strong> 11AM - 23PM; <strong>Sunday:</strong> Closed</p>
         </div>
       </div>
     </div>
@@ -77,6 +77,9 @@ function submitForm() {
   text-align: center;
   padding: 60px 0px;
   background-color: white;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
 }
 
 .subtitle {
@@ -93,8 +96,7 @@ function submitForm() {
 .main-title {
   font-size: 36px;
   font-family: "Amatic SC", sans-serif;
-  margin: 0;
-   font-size: 48px;
+  font-size: 48px;
   font-weight: 500px;
   margin:10px 0 0 0;
 }
@@ -107,6 +109,7 @@ function submitForm() {
 .contact-text {
   color: #ce1212;
 }
+
 .contact-section {
   max-width: 1200px;
   margin: auto;
@@ -115,7 +118,7 @@ function submitForm() {
 
 .map-container iframe {
   width: 100%;
-  height: 500px;
+  height: 600px;
   border: 0;
   margin-bottom: 40px;
   margin-top: 60px;
@@ -136,19 +139,22 @@ function submitForm() {
   gap: 15px;
   padding: 20px;
   box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
-  align-items: center;
+ flex-direction: row; /* keep icon and text side-by-side */
+  text-align: left;    /* align text left */
+  align-items: center; 
 }
 
 .info-card .icon {
-  font-size: 28px;
+  font-size: 24px;
   color: white;
-  background: #c00;
-  width: 50px;
-  height: 50px;
+  background: #ce1212;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.3s ease-in-out;
 }
 
 .info-card h3 {
@@ -156,14 +162,23 @@ function submitForm() {
   font-size: 20px;
   font-weight: 700;
   color: color-mix(in srgb, #212529, transparent 30%);
-line-height: 1.2;
+  line-height: 1.2;
+  margin: 0px 0px 5px;
+  text-align: left;
 }
 
 .info-card p {
   padding: 0;
-  margin-bottom: 0;
-  font-size: 14;
+  /* margin-bottom: 0; */
+  text-align: left;
+  font-size: 14px;
 }
+
+.info-card div {
+  display: flex;
+  flex-direction: column;
+}
+
 p{
   margin-top: 0;
 }
@@ -173,10 +188,11 @@ p{
   padding: 30px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   color: #212529;
-  border-color: color-mix(in srgb, #212529, transparent 80%);
   font-size: 14px;
+  /* border-color: color-mix(in srgb, #212529, transparent 80%);
+  
   padding: 10px 15px;
-  box-shadow: none;
+  box-shadow: none; */
 }
 
 .contact-form .row {
@@ -210,7 +226,111 @@ p{
 }
 
 .contact-form button:hover {
-  background: 
- color-mix(in srgb, #ce1212, transparent 20%);
+  background: color-mix(in srgb, #ce1212, transparent 20%);
 }
+
+@media (max-width: 1024px) {
+  .main-title {
+    font-size: 40px;
+  }
+
+  .info-card {
+    flex: 1 1 100%;
+  }
+
+  .map-container iframe {
+    height: 400px;
+  }
+}
+
+/* === Mobile (<= 768px) === */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 36px;
+  }
+
+  .map-container iframe {
+    height: 350px;
+    margin-top: 40px;
+  }
+
+  .info-boxes {
+    flex-direction: column;
+  }
+
+  .info-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .info-card h3,
+  .info-card p {
+    text-align: center;
+  }
+
+  .contact-form .row {
+    flex-direction: column;
+  }
+
+  .contact-form .row input {
+    flex: 1 1 100%;
+  }
+}
+
+/* === Small Mobile (<= 480px) === */
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .map-container iframe {
+    height: 300px;
+  }
+
+  .info-card {
+    padding: 15px;
+  }
+
+  .info-card .icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-section,
+.subtitle,
+.main-title,
+.map-container,
+.info-boxes,
+.contact-form {
+  opacity: 0;
+  animation-name: fadeUp;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+}
+
+.contact-section { animation-delay: 0.1s; }
+.subtitle { animation-delay: 0.2s; }
+.main-title { animation-delay: 0.3s; }
+.map-container { animation-delay: 0.4s; }
+.info-boxes { animation-delay: 0.5s; }
+.contact-form { animation-delay: 0.6s; }
+
 </style>

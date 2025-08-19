@@ -33,13 +33,42 @@
       <p>© Copyright <strong>Yummy</strong>. All Rights Reserved</p>
       <p class="second-p">Designed by <span class="red">BootstrapMade</span> Distributed by <span class="red">ThemeWagon</span></p>
     </div>
-    <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i></a>
+    <a 
+  v-show="showButton" 
+  href="#" 
+  class="back-to-top" 
+  @click.prevent="scrollToTop"
+>
+  <i class="fa-solid fa-arrow-up"></i>
+</a>
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'FooterComponent'
+  name: 'FooterComponent',
+  data() {
+    return {
+      showButton: false
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.checkScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.checkScroll);
+  },
+  methods: {
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    },
+    checkScroll() {
+      this.showButton = window.scrollY > 200;
+    }
+  }
 }
 </script>
 
@@ -126,7 +155,7 @@ export default {
   transition: background-color 0.3s ease;
 }
 .social-icons a i{
-  font-size: 15px;
+  font-size: 19px;
   margin-bottom: 5px;
   
 
@@ -170,5 +199,81 @@ export default {
   font-size: 16px;
   text-decoration: none;
 }
+/* Responsive - Tablet and below */
+@media (max-width: 1024px) {
+  .footer-container {
+    flex-wrap: wrap;
+    height: auto; /* remove fixed height */
+    margin: 10px 20px;
+    gap: 20px;
+  }
 
+  .footer-box,
+  .footer-box-social {
+    flex: 1 1 45%;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-box {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .footer-box i {
+    margin-top: 4px;
+    margin-left: -250px;
+    text-align: left;       
+  
+  }
+
+  .footer-box h4,
+  .footer-box p {
+    margin-left: -60px;
+    text-align: left;
+  }
+
+  .footer-box-social {
+    margin-right: 0;
+    margin-top: 1px;
+     text-align: left;        /* <-- Add this */
+    align-self: flex-start;
+  }
+
+  .social-icons {
+    justify-content: flex-start;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .footer-box h4 {
+    font-size: 14px;
+  }
+
+  .footer-box p {
+    font-size: 13px;
+  }
+
+  .social-icons a {
+    width: 35px;
+    height: 35px;
+    
+  }
+
+  .social-icons a i {
+    font-size: 14px;
+  }
+}
 </style>
